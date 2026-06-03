@@ -12,9 +12,6 @@ build/
 # Linux
 .DS_Store
 
-# Git
-.git/
-
 # Firebase secrets
 firebase-key.json
 tyre-app/backend/firebase-key.json
