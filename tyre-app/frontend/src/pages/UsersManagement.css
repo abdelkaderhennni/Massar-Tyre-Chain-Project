@@ -504,3 +504,288 @@
   box-shadow: 0 0 0 3px rgba(11, 63, 138, 0.08);
   outline: none;
 }
+
+/* Docker-inspired light user management redesign */
+:root {
+  --docker-white: #FFFFFF;
+  --docker-bg: #F4F7FB;
+  --moby-blue: #1D63ED;
+  --docker-blue: #0DB7ED;
+  --docker-border: #E5E7EB;
+  --docker-text: #111827;
+  --docker-muted: #6B7280;
+  --docker-shadow: 0 14px 34px rgba(17, 24, 39, 0.07);
+  --docker-shadow-sm: 0 8px 22px rgba(17, 24, 39, 0.05);
+}
+
+.um-container {
+  direction: ltr;
+  font-family: 'Poppins', sans-serif;
+  gap: 22px;
+}
+
+.um-header,
+.um-filters,
+.um-table-wrap {
+  border: 1px solid var(--docker-border);
+  border-radius: 24px;
+  background: #FFFFFF;
+  box-shadow: var(--docker-shadow-sm);
+}
+
+.um-header {
+  padding: 24px;
+}
+
+.um-header h2 {
+  color: var(--docker-text);
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  font-weight: 800;
+}
+
+.um-header p {
+  color: var(--docker-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  min-height: 44px;
+  border-radius: 16px;
+  background: var(--moby-blue);
+  box-shadow: 0 10px 22px rgba(29,99,237,0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--moby-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(29,99,237,0.20);
+}
+
+.btn-secondary,
+.btn-danger-sm,
+.btn-close {
+  border: 1px solid var(--docker-border);
+  border-radius: 14px;
+  background: #FFFFFF;
+  color: var(--docker-muted);
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.btn-secondary:hover,
+.btn-close:hover,
+.btn-danger-sm:hover {
+  color: var(--moby-blue);
+  border-color: rgba(29,99,237,0.28);
+  background: #F8FAFC;
+}
+
+.um-alert {
+  border-radius: 18px;
+  box-shadow: var(--docker-shadow-sm);
+}
+
+.um-alert.success {
+  background: rgba(13,183,237,0.08);
+  color: #0479A7;
+  border: 1px solid rgba(13,183,237,0.18);
+}
+
+.um-alert.error {
+  background: #F9FAFB;
+  color: var(--docker-muted);
+  border: 1px solid var(--docker-border);
+}
+
+.um-filters {
+  padding: 18px;
+}
+
+.um-search {
+  min-height: 46px;
+  border: 1px solid var(--docker-border);
+  border-radius: 16px;
+  background: #FFFFFF;
+  color: var(--docker-text);
+  box-shadow: none;
+}
+
+.um-search:focus {
+  border-color: rgba(29,99,237,0.38);
+  box-shadow: 0 0 0 4px rgba(29,99,237,0.08);
+}
+
+.um-filter-tabs {
+  gap: 10px;
+}
+
+.filter-tab {
+  min-height: 42px;
+  border: 1px solid var(--docker-border);
+  border-radius: 14px;
+  background: #FFFFFF;
+  color: var(--docker-muted);
+  font-weight: 700;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+  border-color: rgba(29,99,237,0.24);
+  background: rgba(29,99,237,0.08);
+  color: var(--moby-blue);
+}
+
+.tab-count {
+  background: #F3F6FB;
+  color: var(--docker-muted);
+}
+
+.filter-tab.active .tab-count {
+  background: #FFFFFF;
+  color: var(--moby-blue);
+}
+
+.um-table-wrap {
+  overflow: hidden;
+}
+
+.um-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.um-table th {
+  background: #F8FAFC;
+  color: var(--docker-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.um-table td {
+  border-top: 1px solid var(--docker-border);
+  color: var(--docker-text);
+}
+
+.um-table tbody tr {
+  transition: background 0.25s ease;
+}
+
+.um-table tbody tr:hover {
+  background: #F8FAFC;
+}
+
+.user-avatar {
+  color: var(--moby-blue);
+  background: rgba(29,99,237,0.08);
+}
+
+.user-username,
+.user-name {
+  color: var(--docker-text);
+  font-weight: 800;
+}
+
+.user-sub,
+.user-position {
+  color: var(--docker-muted);
+}
+
+.badge {
+  border-radius: 999px;
+  border: 0;
+  padding: 7px 11px;
+  font-weight: 800;
+}
+
+.badge-central,
+.badge-regional,
+.badge-gas {
+  background: rgba(29,99,237,0.08);
+  color: var(--moby-blue);
+}
+
+.status-dot {
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.status-dot.active {
+  background: rgba(13,183,237,0.10);
+  color: #0479A7;
+}
+
+.status-dot.inactive {
+  background: #F3F4F6;
+  color: var(--docker-muted);
+}
+
+.um-modal-overlay {
+  background: rgba(17, 24, 39, 0.20);
+  backdrop-filter: blur(10px);
+}
+
+.um-modal {
+  border: 1px solid var(--docker-border);
+  border-top: 0;
+  border-radius: 26px;
+  box-shadow: 0 24px 70px rgba(17,24,39,0.14);
+}
+
+.um-modal-header {
+  border-bottom: 1px solid var(--docker-border);
+  background: #FFFFFF;
+}
+
+.um-modal-header h3,
+.um-form-section > label,
+.um-form-section > h4 {
+  color: var(--docker-text);
+}
+
+.um-form-section > label,
+.um-form-section > h4 {
+  border-bottom: 0;
+}
+
+.form-group label {
+  color: var(--docker-muted);
+}
+
+.form-group input,
+.um-form-section select,
+.um-input,
+.um-select,
+.um-form input,
+.um-form select {
+  min-height: 44px;
+  border: 1px solid var(--docker-border);
+  border-radius: 14px;
+  background: #FFFFFF;
+  color: var(--docker-text);
+}
+
+.form-group input:focus,
+.um-form-section select:focus,
+.um-input:focus,
+.um-select:focus,
+.um-form input:focus,
+.um-form select:focus {
+  border-color: rgba(29,99,237,0.38);
+  box-shadow: 0 0 0 4px rgba(29,99,237,0.08);
+}
+
+.role-option {
+  border: 1px solid var(--docker-border);
+  border-radius: 18px;
+  background: #FFFFFF;
+  color: var(--docker-muted);
+}
+
+.role-option:hover,
+.role-option.selected {
+  border-color: rgba(29,99,237,0.28);
+  background: rgba(29,99,237,0.08);
+  color: var(--moby-blue);
+  box-shadow: none;
+}

@@ -28,38 +28,43 @@ export function StockTab({
   return (
     <>
       <div className="control-hero">
-  <div>
-    <span className="hero-kicker">NAFTAL logistics control</span>
-    <h2>{org === 'central' ? 'Central tyre stock' : 'Available tyre stock'}</h2>
-    <p>Inventory grouped by tyre type, ready for controlled regional transfer operations.</p>
-  </div>
-  {org === 'central' && (
-    <button className="stock-add-btn hero-stock-add-btn"
-      onClick={() => { setModal({ type: 'create-type' }); setForm({}); }}>
-      <span>+</span>Add Tyre Stock
-    </button>
-  )}
-  {org === 'regional' && (
-  <button
-    className="stock-add-btn hero-stock-add-btn"
-    onClick={() => {
-      const availableBatches = batches.filter(b => b.Status === 'AT_WILAYA_DEPOT');
-      setModal({ type: 'send-gas-from-stock', availableBatches });
-      setForm({});
-    }}
-  >
-    <span>+</span>
-    Send to Gas Station
-  </button>
-)}
-</div>
+        <div className="hero-copy">
+          <span className="hero-kicker">NAFTAL logistics control</span>
+          <h2>{org === 'central' ? 'Central tyre stock' : 'Available tyre stock'}</h2>
+          <p>Inventory grouped by tyre type, ready for controlled regional transfer operations.</p>
+        </div>
+        <div className="hero-orbit" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        {org === 'central' && (
+          <button className="stock-add-btn hero-stock-add-btn"
+            onClick={() => { setModal({ type: 'create-type' }); setForm({}); }}>
+            <span>+</span>Add Tyre Stock
+          </button>
+        )}
+        {org === 'regional' && (
+          <button
+            className="stock-add-btn hero-stock-add-btn"
+            onClick={() => {
+              const availableBatches = batches.filter(b => b.Status === 'AT_WILAYA_DEPOT');
+              setModal({ type: 'send-gas-from-stock', availableBatches });
+              setForm({});
+            }}
+          >
+            <span>+</span>
+            Send to Gas Station
+          </button>
+        )}
+      </div>
 
 
       <div className="stats-row">
-        <StatCard value={org === 'central' ? centralStock : stockProducts.reduce((sum, product) => sum + product.centralQty, 0)} label="Available Stock" />
-        <StatCard value={stockProducts.length} label="Tyre Types" />
-        <StatCard value={inTransit} label="In Transit" />
-        <StatCard value={sold} label="Sold" />
+        <StatCard icon="stock" tone="blue" value={org === 'central' ? centralStock : stockProducts.reduce((sum, product) => sum + product.centralQty, 0)} label="Available Stock" />
+        <StatCard icon="types" tone="cyan" value={stockProducts.length} label="Tyre Types" />
+        <StatCard icon="transit" tone="blue" value={inTransit} label="In Transit" />
+        <StatCard icon="sold" tone="cyan" value={sold} label="Sold" />
       </div>
 
       <div className="catalog-shell">
@@ -70,7 +75,7 @@ export function StockTab({
           </div>
           <div className="catalog-tools">
             <label className="catalog-search">
-              <span>Search</span>
+              <span aria-hidden="true">Search</span>
               <input
                 value={productQuery}
                 onChange={e => setProductQuery(e.target.value)}

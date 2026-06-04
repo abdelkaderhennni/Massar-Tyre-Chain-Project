@@ -25,14 +25,14 @@ const METRICS = [
 ];
 
 const STATUS_PALETTE = {
-  available: '#0b3f8a',
-  transit:   '#1559ad',
-  regional:  '#14845f',
-  gas:       '#b7791f',
-  sold:      '#00a46c',
+  available: '#1D63ED',
+  transit:   '#0DB7ED',
+  regional:  '#1D63ED',
+  gas:       '#0DB7ED',
+  sold:      '#1D63ED',
 };
 
-const BRAND_COLORS = ['#0b3f8a', '#f2b705', '#14845f', '#7c3aed', '#b42318', '#1559ad', '#64748b'];
+const BRAND_COLORS = ['#1D63ED', '#0DB7ED', '#60A5FA', '#93C5FD', '#2563EB', '#38BDF8', '#6B7280'];
 
 // ── Main export ───────────────────────────────────────────────────────────────
 // Props:

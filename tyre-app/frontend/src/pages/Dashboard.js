@@ -29,6 +29,22 @@ import { WelcomeScreen } from './WelcomeScreen';
 
 import './Dashboard.css';
 
+function NavIcon({ name }) {
+  const icons = {
+    stock: <path d="M5 7.5 12 4l7 3.5v9L12 20l-7-3.5v-9Zm7 3.5 7-3.5M12 11v9M12 11 5 7.5" />,
+    batches: <path d="M4 7h16M6 7v11h12V7M8 11h8M8 15h5" />,
+    stations: <path d="M7 20V5a1 1 0 0 1 1-1h7l3 3v13M9 9h4M9 13h3M17 11h1.5a1.5 1.5 0 0 1 1.5 1.5V17a2 2 0 0 1-4 0v-1" />,
+    analytics: <path d="M5 19V9M12 19V5M19 19v-7M4 19h16" />,
+    users: <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM3 19a5 5 0 0 1 10 0M13.5 18.5A4 4 0 0 1 21 19" />,
+  };
+
+  return (
+    <svg className="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+      {icons[name] || icons.stock}
+    </svg>
+  );
+}
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const raw = localStorage.getItem('user');
@@ -307,39 +323,39 @@ const sold = calcSold(batches);
         <nav className="sidebar-nav">
           <div className="sidebar-section-label">Workspace</div>
           <button className={activeTab === 'stock' ? 'active' : ''} onClick={() => { setActiveTab('stock'); loadMain(); }}>
-            <span>01</span>
+            <span><NavIcon name="stock" /></span>
             {org === 'central' ? 'Stock' : org === 'regional' ? 'Wilaya Stock' : 'Station Stock'}
           </button>
           <button className={activeTab === 'batches' ? 'active' : ''} onClick={() => { setActiveTab('batches'); loadMain(); }}>
-            <span>02</span> Batches
+            <span><NavIcon name="batches" /></span> Batches
           </button>
           {org === 'central' && (
             <>
               <button className={activeTab === 'stations' ? 'active' : ''} onClick={() => setActiveTab('stations')}>
-                <span>03</span> Gas Stations
+                <span><NavIcon name="stations" /></span> Gas Stations
               </button>
               <button className={activeTab === 'analytics' ? 'active' : ''} onClick={() => setActiveTab('analytics')}>
-                <span>04</span> Analytics
+                <span><NavIcon name="analytics" /></span> Analytics
               </button>
               <button className={activeTab === 'users-mgmt' ? 'active' : ''} onClick={() => setActiveTab('users-mgmt')}>
-                <span>05</span> User Management
+                <span><NavIcon name="users" /></span> User Management
               </button>
             </>
           )}
           {org === 'regional' && (
   <>
     <button className={activeTab === 'all-wilayas' ? 'active' : ''} onClick={() => { setActiveTab('all-wilayas'); loadAllWilayas(); }}>
-      <span>03</span> All Wilayas
+      <span><NavIcon name="stations" /></span> All Wilayas
     </button>
     <button className={activeTab === 'analytics' ? 'active' : ''} onClick={() => setActiveTab('analytics')}>
-      <span>04</span> Analytics
+      <span><NavIcon name="analytics" /></span> Analytics
     </button>
   </>
 )}
 
 {org === 'gas' && (
   <button className={activeTab === 'analytics' ? 'active' : ''} onClick={() => setActiveTab('analytics')}>
-    <span>03</span> Analytics
+    <span><NavIcon name="analytics" /></span> Analytics
   </button>
 )}
         </nav>
@@ -355,7 +371,7 @@ const sold = calcSold(batches);
               {activeTab === 'detail'      ? `Batch: ${selectedBatch?.ID}`
                 : activeTab === 'stations'   ? 'Gas Stations'
                 : activeTab === 'all-wilayas'? 'All 48 Wilayas Stock'
-                : activeTab === 'batches'    ? 'Shipment Batches'
+                : activeTab === 'batches'    ? 'Transactions History'
                 : activeTab === 'users-mgmt' ? 'User Management'
                 : activeTab === 'analytics'  ? 'Analytics & Insights'
                 : org === 'central'          ? 'Central Stock'

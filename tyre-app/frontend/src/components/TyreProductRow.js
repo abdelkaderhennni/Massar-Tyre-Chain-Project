@@ -17,12 +17,13 @@ function TyreVisual({ brand, large = false }) {
   const src = images[brand] || defaultImg;
 
   return (
-    <img
-      src={src}
-      alt={brand || 'Tyre'}
-      className={large ? 'tyre-visual tyre-visual-large' : 'tyre-visual'}
-      style={{ objectFit: 'contain', background: '#f5f6f8' }}
-    />
+    <div className={large ? 'tyre-visual-frame tyre-visual-frame-large' : 'tyre-visual-frame'}>
+      <img
+        src={src}
+        alt={brand || 'Tyre'}
+        className={large ? 'tyre-visual tyre-visual-large' : 'tyre-visual'}
+      />
+    </div>
   );
 }
 
@@ -38,9 +39,15 @@ function Spec({ label, value }) {
 export function TyreProductRow({ product, onOpen, onSend, canSend }) {
   const stockPct = product.totalQty > 0 ? Math.min(100, Math.round((product.centralQty / product.totalQty) * 100)) : 0;
   const stockLevel = getStockLevel(product);
+  const ringStyle = { '--stock-pct': `${stockPct}%` };
   return (
-    <article className="tyre-product-row" onClick={onOpen}>
-      <TyreVisual brand={product.brand} />
+    <article className="tyre-product-row tyre-product-card" onClick={onOpen}>
+      <div className="product-media">
+        <TyreVisual brand={product.brand} />
+        <div className="availability-ring" style={ringStyle} title={`${stockPct}% available`}>
+          <span>{stockPct}%</span>
+        </div>
+      </div>
       <div className="product-copy">
         <div className="product-topline">
           <span className="brand-chip">{product.brand}</span>
